@@ -1,0 +1,80 @@
+name: Release
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Bump Version, Build, Test, Upload artifacts
+    runs-on: ubuntu-latest
+    outputs:
+      version: ${{ steps.get_version.outputs.version }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - uses: SiqiLu/dotnet-bump-version@master
+      with:
+          version_files: "**/*.csproj"
+          version_mask: "0.0.1.0"
+          version_overwrite: "*.*.*.*"
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Build, Test and Upload Artifacts
+      uses: ./.github/actions/build-test-upload
+
+    - uses: bbonkr/get-version-action@v1
+      id: get_version
+      with:
+          project: './src/ScriptHaqonizer.Hosting/ScriptHaqonizer.Hosting.csproj'
+
+  create-release:
+    name: Create Github Release
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download artifacts
+      uses: actions/download-artifact@v3
+      with:
+          path: ./artifacts
+
+    - name: Zip ScriptHaqonizer.Console-win-x64
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+          type: 'zip'
+          directory: ./artifacts
+          path: ./ScriptHaqonizer.Console-win-x64
+          filename: ../ScriptHaqonizer.Console-win-x64.zip
+
+    - name: ScriptHaqonizer.Console-linux-x64
+      uses: thedoctor0/zip-release@0.7.1
+      with:
+          type: 'zip'
+          directory: ./artifacts
+          path: ./ScriptHaqonizer.Console-linux-x64
+          filename: ../ScriptHaqonizer.Console-linux-x64.zip     
+
+    - name: Create release
+      uses: ncipollo/release-action@v1
+      with:
+        artifacts: "ScriptHaqonizer.Console-win-x64.zip,ScriptHaqonizer.Console-linux-x64.zip"
+        tag: ${{needs.build.outputs.version}}
+
+  nuget-publish:
+    name: Publish to nuget
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+    - name: Download Package
+      uses: actions/download-artifact@v3
+      with:
+        name: ScriptHaqonizer.Hosting
+
+    - name: Setup NuGet
+      uses: NuGet/setup-nuget@v1.1.1
+
+    - name: Publish
+      run: nuget push **\*.nupkg -Source 'https://api.nuget.org/v3/index.json' -ApiKey ${{secrets.NUGET_API_KEY}}

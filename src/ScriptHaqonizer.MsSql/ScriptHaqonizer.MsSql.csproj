@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\ScriptHaqonizer.Core\ScriptHaqonizer.Core.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<InternalsVisibleTo Include="ScriptHaqonizer.MsSql.Tests" />
+		<InternalsVisibleTo Include="ScriptHaqonizer.Console.Tests" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
+	    <HintPath>Libs\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,46 @@
+name: 'Build, Test and Upload workflow atrifacts'
+runs:
+  using: "composite"
+  steps:
+  - name: Install .NET Core
+    uses: actions/setup-dotnet@v3
+    with:
+      dotnet-version: 7.0.x
+
+  - name: Restore solution
+    run: dotnet restore ./ScriptHaqonizer.sln /t:Restore /p:Configuration=Release
+    shell: bash
+
+  - name: Build solution
+    run: dotnet build ./ScriptHaqonizer.sln --no-restore -c Release
+    shell: bash
+
+  - name: Execute tests
+    run: dotnet test --no-restore 
+    shell: bash
+
+  - name: Publish ScriptHaqonizer.Console-win-x64
+    run: dotnet publish ./src/ScriptHaqonizer.Console/ScriptHaqonizer.Console.csproj -c Release -r win-x64 --self-contained
+    shell: bash
+
+  - name: Publish ScriptHaqonizer.Console-linux-x64
+    run: dotnet publish ./src/ScriptHaqonizer.Console/ScriptHaqonizer.Console.csproj -c Release -r linux-x64 --self-contained
+    shell: bash
+
+  - name: Upload ScriptHaqonizer.Console-win-x64
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.Console-win-x64
+      path: ./src/ScriptHaqonizer.Console/bin/Release/net7.0/win-x64/publish
+
+  - name: Upload ScriptHaqonizer.Console-linux-x64
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.Console-linux-x64
+      path: ./src/ScriptHaqonizer.Console/bin/Release/net7.0/linux-x64/publish
+
+  - name: Upload ScriptHaqonizer.Hosting
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.Hosting
+      path: ./src/ScriptHaqonizer.Hosting/bin/Release/ScriptHaqonizer.Hosting.*.nupkg
