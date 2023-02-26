@@ -1,0 +1,14 @@
+name: Pull Request
+
+on: pull_request
+
+jobs:
+  build:
+    name: Bump Version, Build, Test, Upload artifacts
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Build, Test and Upload Artifacts
+      uses: ./.github/actions/build-test-upload
