@@ -1,5 +1,5 @@
 # ScriptHaqonizer
-It is a console utility with which you can automate the cycle of verification and deployment of migration scripts.
+It is a utility with which you can automate the cycle of verification and deployment of migration scripts.
 Supports database backup with automatic calculation of affected databases, syntax validation and script execution check. Thus, the utility can be implemented at the CI / CD stage to check the supplied scripts, as well as execute them on the desired environment.
 
 ### Concept of work:
