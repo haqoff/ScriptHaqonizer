@@ -1,7 +1,6 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
-using Moq;
 using ScriptHaqonizer.Core.Models;
 using ScriptHaqonizer.Hosting.MsSql;
 
@@ -12,10 +11,9 @@ public class ResolvingTests
     [Fact]
     public void ShouldResolveHostedService_WhenMsSqlDbType()
     {
-        var logger = new Mock<ILogger>();
         var serviceCollection = new ServiceCollection();
 
-        serviceCollection.AddScoped(_ => logger.Object);
+        serviceCollection.AddLogging(b => b.AddDebug());
         serviceCollection.AddScriptHaqonizer(new MigrationOptions()
         {
             DatabaseName = "dbName",

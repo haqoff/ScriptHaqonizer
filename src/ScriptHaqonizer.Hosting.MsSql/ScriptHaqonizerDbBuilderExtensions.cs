@@ -21,12 +21,13 @@ public static class ScriptHaqonizerDbBuilderExtensions
         var serviceCollection = builder.ServiceCollection;
         var migrationOptions = builder.MigrationOptions;
         serviceCollection.AddSingleton<IScriptContentParser, MsSqlScriptContentParser>(p =>
-            new MsSqlScriptContentParser(migrationOptions.SpecifyingDatabaseNameValidation, p.GetRequiredService<ILogger>()));
+            new MsSqlScriptContentParser(migrationOptions.SpecifyingDatabaseNameValidation, p.GetRequiredService<ILogger<MsSqlScriptContentParser>>()));
         serviceCollection.AddSingleton<IExecutedScriptProvider, MsSqlExecutedScriptProvider>(p =>
-            new MsSqlExecutedScriptProvider(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger>()));
+            new MsSqlExecutedScriptProvider(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger<MsSqlExecutedScriptProvider>>()));
         serviceCollection.AddSingleton<IScriptExecutor, MsSqlScriptExecutor>(p =>
-            new MsSqlScriptExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger>()));
+            new MsSqlScriptExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger<MsSqlScriptExecutor>>()));
         serviceCollection.AddSingleton<IDatabaseBackupExecutor, MsSqlDatabaseBackupExecutor>(p =>
-            new MsSqlDatabaseBackupExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, migrationOptions.BackupPath, p.GetRequiredService<ILogger>()));
+            new MsSqlDatabaseBackupExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, migrationOptions.BackupPath,
+                p.GetRequiredService<ILogger<MsSqlDatabaseBackupExecutor>>()));
     }
 }

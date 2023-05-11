@@ -44,7 +44,7 @@ public static class ServiceCollectionExtensions
                 p.GetRequiredService<IDatabaseBackupExecutor>(),
                 p.GetRequiredService<IScriptExecutor>(),
                 loggerOptions,
-                p.GetRequiredService<ILogger>()
+                p.GetRequiredService<ILogger<MigrationFacade>>()
             )
         );
 
