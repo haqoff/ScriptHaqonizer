@@ -9,7 +9,6 @@ using ScriptHaqonizer.Core.Models;
 using ScriptHaqonizer.Core.Parsers;
 using ScriptHaqonizer.Core.Paths;
 using ScriptHaqonizer.Core.Providers;
-using ScriptHaqonizer.MsSql;
 
 namespace ScriptHaqonizer.Hosting;
 
@@ -23,27 +22,13 @@ public static class ServiceCollectionExtensions
     /// <br/>
     /// Registers a hosted service <see cref="MigrationHostedService"/> that will perform the migration at application startup.
     /// </summary>
-    public static IServiceCollection AddScriptHaqonizer(this IServiceCollection serviceCollection, MigrationOptions migrationOptions)
+    public static IServiceCollection AddScriptHaqonizer(this IServiceCollection serviceCollection, MigrationOptions migrationOptions, Action<ScriptHaqonizerDbBuilder> action)
     {
         var validationContext = new ValidationContext(migrationOptions);
         Validator.ValidateObject(migrationOptions, validationContext, true);
 
-        switch (migrationOptions.DbType)
-        {
-            case SupportedDb.MsSql:
-                serviceCollection.AddSingleton<IScriptContentParser, MsSqlScriptContentParser>(p =>
-                    new MsSqlScriptContentParser(migrationOptions.SpecifyingDatabaseNameValidation, p.GetRequiredService<ILogger>()));
-                serviceCollection.AddSingleton<IExecutedScriptProvider, MsSqlExecutedScriptProvider>(p =>
-                    new MsSqlExecutedScriptProvider(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger>()));
-                serviceCollection.AddSingleton<IScriptExecutor, MsSqlScriptExecutor>(p =>
-                    new MsSqlScriptExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, p.GetRequiredService<ILogger>()));
-                serviceCollection.AddSingleton<IDatabaseBackupExecutor, MsSqlDatabaseBackupExecutor>(p =>
-                    new MsSqlDatabaseBackupExecutor(migrationOptions.ConnectionString, migrationOptions.DatabaseName, migrationOptions.BackupPath, p.GetRequiredService<ILogger>()));
-                break;
-
-            default:
-                throw new ArgumentOutOfRangeException(nameof(migrationOptions.DbType), "Unsupported database type.");
-        }
+        var builder = new ScriptHaqonizerDbBuilder(migrationOptions, serviceCollection);
+        action(builder);
 
         serviceCollection.AddSingleton<IScriptFilePathProvider, ScriptFilePathProvider>(_ => new ScriptFilePathProvider(migrationOptions.ScriptDirectoryPath));
         serviceCollection.AddSingleton<IScriptContentLoader, ScriptContentLoader>();

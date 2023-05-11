@@ -21,9 +21,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptHaqonizer.Playground"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptHaqonizer.MsSql.Tests", "tests\ScriptHaqonizer.MsSql.Tests\ScriptHaqonizer.MsSql.Tests.csproj", "{A15AEAD7-A305-47F4-A02D-3CC67A6A4AE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptHaqonizer.Hosting", "src\ScriptHaqonizer.Hosting\ScriptHaqonizer.Hosting.csproj", "{507AF118-F7A3-4396-9B1A-5CDB73E9C9F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptHaqonizer.Hosting", "src\ScriptHaqonizer.Hosting\ScriptHaqonizer.Hosting.csproj", "{507AF118-F7A3-4396-9B1A-5CDB73E9C9F9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptHaqonizer.Hosting.Tests", "tests\ScriptHaqonizer.Hosting.Tests\ScriptHaqonizer.Hosting.Tests.csproj", "{843F069D-C647-46A7-85B9-486AA04CDD75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ScriptHaqonizer.Hosting.Tests", "tests\ScriptHaqonizer.Hosting.Tests\ScriptHaqonizer.Hosting.Tests.csproj", "{843F069D-C647-46A7-85B9-486AA04CDD75}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptHaqonizer.Hosting.MsSql", "src\ScriptHaqonizer.Hosting.MsSql\ScriptHaqonizer.Hosting.MsSql.csproj", "{F3BF68BE-E748-413B-BB2F-9D1040AF7324}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,6 +69,10 @@ Global
 		{843F069D-C647-46A7-85B9-486AA04CDD75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{843F069D-C647-46A7-85B9-486AA04CDD75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{843F069D-C647-46A7-85B9-486AA04CDD75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BF68BE-E748-413B-BB2F-9D1040AF7324}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BF68BE-E748-413B-BB2F-9D1040AF7324}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BF68BE-E748-413B-BB2F-9D1040AF7324}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BF68BE-E748-413B-BB2F-9D1040AF7324}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -81,6 +87,7 @@ Global
 		{A15AEAD7-A305-47F4-A02D-3CC67A6A4AE8} = {37EC6F8D-9311-4C5D-8D37-02ECEF668E8E}
 		{507AF118-F7A3-4396-9B1A-5CDB73E9C9F9} = {3E373D01-9860-4AD9-A382-2FE18B2D10CE}
 		{843F069D-C647-46A7-85B9-486AA04CDD75} = {37EC6F8D-9311-4C5D-8D37-02ECEF668E8E}
+		{F3BF68BE-E748-413B-BB2F-9D1040AF7324} = {3E373D01-9860-4AD9-A382-2FE18B2D10CE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BEB13BF7-7700-4A35-89F4-5649FCC90FE1}

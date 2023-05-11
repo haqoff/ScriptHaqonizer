@@ -4,6 +4,22 @@
 		<TargetFramework>net7.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
+		<PackageTags>script;migration;scriptmigrator;script migration;sql;</PackageTags>
+		<PackAsTool>False</PackAsTool>
+		<RepositoryUrl>https://github.com/haqoff/ScriptHaqonizer</RepositoryUrl>
+		<Copyright>HAQON;Kirill Sizov;</Copyright>
+		<Description>
+			It is a utility with which you can automate the cycle of verification and deployment of migration scripts.
+			Supports database backup with automatic calculation of affected databases, syntax validation and script execution check. Thus, the utility can be implemented at the CI / CD stage to check the supplied scripts, as well as execute them on the desired environment.
+		</Description>
+		<Title>ScriptHaqonizer</Title>
+		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<AssemblyVersion>7.0.1.0</AssemblyVersion>
+		<FileVersion>7.0.1.0</FileVersion>
+		<Version>7.0.1.0</Version>
+		<Authors>haQon</Authors>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -20,9 +36,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
-	    <HintPath>Libs\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
-	  </Reference>
+		<Reference Include="Microsoft.SqlServer.TransactSql.ScriptDom">
+			<HintPath>Libs\Microsoft.SqlServer.TransactSql.ScriptDom.dll</HintPath>
+		</Reference>
 	</ItemGroup>
 
 </Project>

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net7.0</TargetFramework>
@@ -35,7 +35,6 @@ Supports database backup with automatic calculation of affected databases, synta
 
   <ItemGroup>
     <ProjectReference Include="..\ScriptHaqonizer.Core\ScriptHaqonizer.Core.csproj" />
-    <ProjectReference Include="..\ScriptHaqonizer.MsSql\ScriptHaqonizer.MsSql.csproj" />
   </ItemGroup>
 
 </Project>

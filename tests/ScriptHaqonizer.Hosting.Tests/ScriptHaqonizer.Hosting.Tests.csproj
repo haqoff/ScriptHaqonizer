@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\ScriptHaqonizer.Hosting\ScriptHaqonizer.Hosting.csproj" />
+    <ProjectReference Include="..\..\src\ScriptHaqonizer.Hosting.MsSql\ScriptHaqonizer.Hosting.MsSql.csproj" />
   </ItemGroup>
 
 </Project>
