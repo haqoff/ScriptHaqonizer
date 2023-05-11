@@ -71,7 +71,22 @@ jobs:
     - name: Download Package
       uses: actions/download-artifact@v3
       with:
+        name: ScriptHaqonizer.Core
+
+    - name: Download Package
+      uses: actions/download-artifact@v3
+      with:
+        name: ScriptHaqonizer.MsSql
+
+    - name: Download Package
+      uses: actions/download-artifact@v3
+      with:
         name: ScriptHaqonizer.Hosting
+
+    - name: Download Package
+      uses: actions/download-artifact@v3
+      with:
+        name: ScriptHaqonizer.Hosting.MsSql
 
     - name: Setup NuGet
       uses: NuGet/setup-nuget@v1.1.1

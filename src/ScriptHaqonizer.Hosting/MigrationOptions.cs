@@ -42,11 +42,6 @@ public class MigrationOptions
     public ExecutionMode Mode { get; init; } = ExecutionMode.Full;
 
     /// <summary>
-    /// Type of database.
-    /// </summary>
-    public SupportedDb DbType { get; init; } = SupportedDb.MsSql;
-
-    /// <summary>
     /// If set to true, all statements in scripts must explicitly specify which database to use.
     /// </summary>
     public bool SpecifyingDatabaseNameValidation { get; init; } = false;

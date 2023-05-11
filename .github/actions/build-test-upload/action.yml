@@ -39,8 +39,26 @@ runs:
       name: ScriptHaqonizer.Console-linux-x64
       path: ./src/ScriptHaqonizer.Console/bin/Release/net7.0/linux-x64/publish
 
+  - name: Upload ScriptHaqonizer.Core
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.Core
+      path: ./src/ScriptHaqonizer.Core/bin/Release/ScriptHaqonizer.Core.*.nupkg
+
+  - name: Upload ScriptHaqonizer.MsSql
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.MsSql
+      path: ./src/ScriptHaqonizer.MsSql/bin/Release/ScriptHaqonizer.MsSql.*.nupkg
+
   - name: Upload ScriptHaqonizer.Hosting
     uses: actions/upload-artifact@v3
     with:
       name: ScriptHaqonizer.Hosting
       path: ./src/ScriptHaqonizer.Hosting/bin/Release/ScriptHaqonizer.Hosting.*.nupkg
+
+  - name: Upload ScriptHaqonizer.Hosting.MsSql
+    uses: actions/upload-artifact@v3
+    with:
+      name: ScriptHaqonizer.Hosting.MsSql
+      path: ./src/ScriptHaqonizer.Hosting.MsSql/bin/Release/ScriptHaqonizer.Hosting.MsSql.*.nupkg
